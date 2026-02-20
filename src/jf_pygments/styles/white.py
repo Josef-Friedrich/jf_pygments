@@ -1,16 +1,16 @@
 from pygments.style import Style
 from pygments.token import (
-    Keyword,
-    Name,
     Comment,
-    String,
     Error,
+    Generic,
+    Keyword,
+    Literal,
+    Name,
     Number,
     Operator,
-    Generic,
-    Whitespace,
-    Literal,
     Punctuation,
+    String,
+    Whitespace,
 )
 
 
@@ -28,7 +28,6 @@ class WhiteStyle(Style):
         Generic: "#ffffff",
         Error: "#ffffff",
         Literal: "#ffffff",
-        String: "#ffffff",
         Number: "#ffffff",
         Whitespace: "#ffffff",
         Punctuation: "#ffffff",

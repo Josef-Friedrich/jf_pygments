@@ -1,10 +1,10 @@
-[tool.poetry]
+[project]
 name = "jf_pygments"
 version = "0.3.0"
 description = "Extend the Python syntax highlighter with some custom lexers and styles."
-authors = ["Josef Friedrich <josef@friedrich.rocks>"]
+authors = [{ name = "Josef Friedrich", email = "josef@friedrich.rocks" }]
+requires-python = ">=3.10,<4"
 readme = "README.rst"
-repository = "https://github.com/Josef-Friedrich/jf_pygments"
 license = "GPL-3.0-only"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -14,27 +14,28 @@ classifiers = [
     "Topic :: Utilities",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
 ]
+dependencies = [
+    "pygments>=2.19.2",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-pygments = "^2.13.0"
+[project.urls]
+Source = "https://github.com/Josef-Friedrich/jf_pygments"
+Issues = "https://github.com/Josef-Friedrich/jf_pygments/issues"
 
-[tool.poetry.group.dev.dependencies]
-autopep8 = "^1.6.0"
-black = "^22.6.0"
-isort = "^5.10.1"
-types-pygments = "^2.13.1.1"
-
-[build-system]
-requires = ["poetry>=1.2.0b2"]
-build-backend = "poetry.masonry.api"
-
-[tool.poetry.plugins]
-
-[tool.poetry.plugins."pygments.styles"]
+[project.entry-points."pygments.styles"]
 white = "jf_pygments:WhiteStyle"
 baldr = "jf_pygments:BaldrStyle"
 
-[tool.poetry.plugins."pygments.lexers"]
-"baldr-sql" = "jf_pygments:BaldrSqlLexer"
-"table-schema" = "jf_pygments:TableSchemaLexer"
+[project.entry-points."pygments.lexers"]
+baldr-sql = "jf_pygments:BaldrSqlLexer"
+table-schema = "jf_pygments:TableSchemaLexer"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "types-pygments>=2.19.0.20251121",
+]
+
+[build-system]
+requires = ["uv_build>=0.10.4,<0.11.0"]
+build-backend = "uv_build"

@@ -1,7 +1,8 @@
 import re
+
+from pygments.lexer import RegexLexer, bygroups, combined, default, inherit
 from pygments.lexers import SqlLexer
-from pygments.lexer import RegexLexer, inherit, bygroups, combined, default
-from pygments.token import Name, Keyword, Whitespace, Punctuation, Text
+from pygments.token import Keyword, Name, Punctuation, Text, Whitespace
 
 
 class BaldrSqlLexer(SqlLexer):
@@ -44,8 +45,8 @@ class BaldrSqlLexer(SqlLexer):
                 bygroups(Name.Class, Whitespace, Keyword, Whitespace, Name.Class),
             ),
             (r",", Punctuation, combined("table-name-as", "table-name-simple")),
-            (r"", Text, '#pop'),
-            default("root")
+            (r"", Text, "#pop"),
+            default("root"),
         ],
         "table-name-simple": [
             (
@@ -53,7 +54,7 @@ class BaldrSqlLexer(SqlLexer):
                 bygroups(Name.Class, Whitespace),
             ),
             (r"(,)(\s*)", bygroups(Punctuation, Whitespace), "table-name-simple"),
-            (r"", Text, '#pop'),
+            (r"", Text, "#pop"),
             # default("root")
         ],
     }
